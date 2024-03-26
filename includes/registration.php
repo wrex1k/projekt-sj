@@ -7,7 +7,7 @@
     <style>
       @font-face {
         font-family: Glacial;
-        src: url(/fonts/GlacialIndifference-Regular.otf);
+        src: url(../fonts/GlacialIndifference-Regular.otf);
       }
 
       body {
@@ -15,17 +15,14 @@
         padding: 0;
       }
 
-      h1,
-      form,
-      a,
-      button {
+      a, input, h2 {
         font-family: Glacial;
-        color: #fafafa;
         text-decoration: none;
+        color: #fafafa;
       }
 
-      input{
-        color: black;
+      input {
+        color: #161616;
       }
 
       .container {
@@ -66,20 +63,11 @@
         margin: 0 auto;
       }
 
-      .button-wrapper {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-      }
-
-      input[type="firstName"],
-      input[type="lastName"],
-      input[type="email"],
-      input[type="password"] {
+      input {
         width: 100%;
         padding: 10px;
         margin-bottom: 10px;
-        border: 1px white;
+        border: none;
         border-radius: 5px;
         box-sizing: border-box;
       }
@@ -100,54 +88,21 @@
   <body>
     <div class="container">
       <div class="left-half">
-        <img src="../img/register.jpg " alt="art" />
+        <img src="../img/register.jpg" alt="art" />
       </div>
       <div class="right-half">
         <div class="input-wrapper">
-        <form id="contact" action="/assets/formprocessing.php">
-            <h2>Register</h2>
-            <input type="firstName" name="userName" placeholder="First Name" required />
-            <input type="lastName" name="lastName" placeholder="Last Name" required />
-            <input type="email" name="email" placeholder="Email" required />
-            <input type="password" name="password" placeholder="Password" required />
-            <input type="submit" value="Register" />
+        <form method="POST" action="../assets/formregister.php">
+          <h2>Register</h2>
+            <input id="firstname" type="text" name="r_firstname" placeholder="First Name"required>
+            <input id="lastname" type="text" name="r_lastname" placeholder="Last Name"required>
+            <input id="nickname "type="text" name="r_nickname" placeholder="Nickname"required>
+            <input id="email" type="email" name="r_email" placeholder="E-mail" required>
+            <input id="password" type="password" name="r_password" placeholder="Password" required>
+            <input type="submit" value="Register">
           </form>
         </div>
       </div>
     </div>
   </body>
 </html>
-
-<?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Define your database connection details
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "virtualartgallery";
-
-    // Create connection
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    // Check connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-
-    // Prepare and bind parameters
-    $stmt = $conn->prepare("INSERT INTO users (firstName, lastName, email, password) VALUES (?, ?, ?, ?)");
-    $stmt->bind_param("ssss", $firstName, $lastName, $email, $password);
-
-    // Set parameters and execute
-    $firstName = $_POST['firstName'];
-    $lastName = $_POST['lastName'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $stmt->execute();
-
-    echo "New records inserted successfully";
-
-    $stmt->close();
-    $conn->close();
-}
-?>

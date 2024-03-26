@@ -7,7 +7,7 @@
     <style>
       @font-face {
         font-family: Glacial;
-        src: url(/fonts/GlacialIndifference-Regular.otf);
+        src: url(../fonts/GlacialIndifference-Regular.otf);
       }
 
       body {
@@ -15,17 +15,14 @@
         padding: 0;
       }
 
-      h1,
-      form,
-      a,
-      button {
+      a, input, h2 {
         font-family: Glacial;
-        color: #fafafa;
         text-decoration: none;
+        color: #fafafa;
       }
 
-      input{
-        color: black;
+      input {
+        color: #161616;
       }
 
       .container {
@@ -66,18 +63,11 @@
         margin: 0 auto;
       }
 
-      .button-wrapper {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-      }
-
-      input[type="email"],
-      input[type="password"] {
+      input {
         width: 100%;
         padding: 10px;
         margin-bottom: 10px;
-        border: 1px white;
+        border: none;
         border-radius: 5px;
         box-sizing: border-box;
       }
@@ -93,23 +83,21 @@
         cursor: pointer;
       }
     </style>
-  </head>
-
-  <body>
+<body>
     <div class="container">
       <div class="left-half">
-        <img src="../img/login.jpg " alt="art" />
+        <img src="../img/login.jpg" alt="art" />
       </div>
       <div class="right-half">
         <div class="input-wrapper">
-          <form id="contact" action="/assets/formproccesing.php">
-            <h2>Login</h2>
-            <input type="email" name="email" placeholder="Email" required />
-            <input type="password" name="password" placeholder="Password" required />
-            <input type="submit" value="Login" />
-          </form>
-        </div>
+        <form method="POST" action="../assets/formlogin.php">
+          <h2>Login</h2>
+          <input type="text" name="l_nickname" placeholder="Nickname" required />
+          <input type="password" name="l_password" placeholder="Password" required />
+          <input type="submit" value="Login"  />
+        </form>
       </div>
     </div>
-  </body>
+  </div>
+</body>
 </html>
