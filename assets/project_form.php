@@ -14,27 +14,19 @@
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
             // sql príkaz na doplenie do tabuľky
-            $sql = "INSERT INTO users (firstName, lastName, nickName, email, password) 
-            VALUES (:firstName, :lastName, :nickName, :email, :password)";
+            $sql = "INSERT INTO project (email) 
+            VALUES (:email)";
 
             // informácie získane z formulára
-            $firstName = $_POST['r_firstname'];
-            $lastName = $_POST['r_lastname'];
-            $nickName = $_POST['r_nickname'];
-            $email = $_POST['r_email'];
-            $password = $_POST['r_password'];
+            $email = $_POST['p_email'];
             
             // príprava a vykonanie príkazu
             $stmt = $pdo->prepare($sql);
-            $stmt->bindParam(':firstName', $firstName, PDO::PARAM_STR);
-            $stmt->bindParam(':lastName', $lastName, PDO::PARAM_STR);
-            $stmt->bindParam(':nickName', $nickName, PDO::PARAM_STR);
             $stmt->bindParam(':email', $email, PDO::PARAM_STR);
-            $stmt->bindParam(':password', $password, PDO::PARAM_STR);
             $stmt->execute();
-            
-            // presmerovanie na inú stránku po úspešnej registrácii
-        header("Location: ../includes/registrationsuccess.php");
+
+            // presmerovanie
+        header("Location: ../index.php");
         exit();
 
         } catch (PDOException $e) {

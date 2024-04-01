@@ -32,35 +32,36 @@
         display: flex;
         flex-direction: column;
         justify-content: space-around;
-        gap: 20px;
+        gap: 20px;        
+      }
+
+      .input-wrapper {
+        display: flex;
+        flex-direction: row;
+        width: 350px;
+        gap: 5px;
       }
 
       .project-wrapper input[type="email"] {
         width: 100%;
-        padding: 10px;
-        border: 1px solid #000000;
+        padding: 10px 85px;
+        border: none;
+        border: black solid 1px;
         box-sizing: border-box;
       }
 
-      .adress-wrapper h3 {
-        margin-bottom: 15px;
-      }
-      .input-wrapper {
-        display: flex;
-        flex-direction: row;
-        width: 300px;
-        gap: 10px;
-      }
-
       .send-button {
-        padding: 15px 30px;
-        border: none;
+        padding: 15px 35px;
         background-image: url("img/whale.png");
         background-repeat: no-repeat;
         background-position: 0%;
         background-size: cover;
         cursor: pointer;
-        border-radius: 5px;
+        border: none;
+      }
+
+      .adress-wrapper h3 {
+        margin-bottom: 15px;
       }
 
       .copyright {
@@ -77,8 +78,6 @@
         color: white;
       }
 
-      @media screen and (max-width: 600px) {
-      }
     </style>
   </head>
   <body>
@@ -86,15 +85,17 @@
       <div class="footer-container">
         <div class="project-wrapper">
           <p>Got a Project in Mind?</p>
-          <div class="input-wrapper">
-            <input
-              type="email"
-              id="email"
-              name="email"
-              placeholder="enter your email"
-            />
-            <input class="send-button" type="submit" value="" />
-          </div>
+            <form class="input-wrapper" method="POST" action="assets/project_form.php" onsubmit="alert('Your email was send on!')">
+              <input
+                type="email"
+                id="email"
+                name="p_email"
+                placeholder="enter your email"
+                pattern="[a-z0-9._%+-]+@[a-z0-9.-]"
+                required
+              />
+              <input class="send-button" type="submit" value=""/>
+            </form>
         </div>
 
         <div class="adress-wrapper">

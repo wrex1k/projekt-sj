@@ -59,28 +59,12 @@
         transition: color 0.9s ease;
       }
 
-      .navbar-buttons {
-        display: flex;
-        flex-direction: row;
-      }
-
-      .login-button,
-      .register-button {
-        margin: 0 15px 0 15px;
-        text-transform: lowercase;
-        background-color: #ffffffb2;
-        color: rgb(0, 0, 0);
-        cursor: pointer;
-        border: none;
-      }
-
       .hamburger {
         display: none;
       }
 
       p,
-      a,
-      button {
+      a {
         font-family: Glacial;
         font-size: 18px;
         color: black;
@@ -91,51 +75,6 @@
       .container {
         padding: 3% 10% 3% 10%;
       }
-
-      @media screen and (max-width: 600px) {
-        main {
-          margin-top: 0px;
-        }
-        .row {
-          flex-direction: column;
-        }
-        .main-menu {
-          display: none;
-        }
-        .hamburger {
-          display: inline;
-        }
-        .main-header {
-          position: relative;
-          top: 0px;
-        }
-
-        /*layouts*/
-        .main-menu {
-          display: none;
-        }
-        .hamburger {
-          display: inline;
-        }
-        .main-header {
-          position: relative;
-          top: 0px;
-        }
-        .main-menu.responsive {
-          display: block;
-          position: absolute;
-          background-color: #f7f7f7;
-          width: 100%;
-          top: 60px;
-          left: 0px;
-          padding-top: 20px;
-          padding-bottom: 20px;
-        }
-        .main-menu.responsive li {
-          display: block;
-          margin-left: 0px;
-        }
-      }
     </style>
   </head>
 
@@ -144,30 +83,18 @@
       <nav class="main-nav">
         <ul class="main-menu" id="main-menu">
           <li><a href="index.php">Home</a></li>
-          <li><a href="">Gallery</a></li>
-          <li><a href="">Tickets</a></li>
-          <li><a href="">Events</a></li>
+          <li><a href="exhibition.php">Exhibition</a></li>
+          <li><a href="tickets.php">Tickets</a></li>
         </ul>
         <a class="hamburger" id="hamburger">
           <i class="fa fa-bars"></i>
         </a>
       </nav>
-      <div>
         <img
           src="img/logo.jpg"
           class="Visual Art Gallery logo"
           alt="Visual Art Gallery logo"
         />
-      </div>
-      <div class="navbar-buttons">
-        <div>
-          <a href="includes/login.php" class="login-button">login</a>
-        </div>
-        <div>
-          <a href="includes/registration.php" class="register-button"
-            >register</a
-          >
-        </div>
       </div>
     </header>
   </body>
