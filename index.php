@@ -6,7 +6,8 @@
     <title>Home</title>
   </head>
   <body>
-    <?php
+
+  <?php
   $file_path = "parts/navbar.php";
   if(file_exists($file_path)) {
       include($file_path);

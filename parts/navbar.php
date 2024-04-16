@@ -15,12 +15,6 @@
         box-sizing: border-box;
       }
 
-      /*overall*/
-      html {
-        margin-top: 40px;
-      }
-
-      /*navbar*/
       header {
         position: fixed;
         top: 0;
@@ -34,6 +28,7 @@
         z-index: 1;
         max-width: 100%;
       }
+      
       .logo {
         height: 55px;
       }
@@ -44,6 +39,7 @@
         margin: 0;
         display: flex;
       }
+
       .main-menu li {
         display: inline;
       }
@@ -52,6 +48,7 @@
         text-decoration: none;
         margin: 0 20px 0 20px;
       }
+
       .main-menu li:hover a,
       .login-button:hover,
       .register-button:hover {
@@ -59,21 +56,79 @@
         transition: color 0.9s ease;
       }
 
+      .navbar-buttons {
+        display: flex;
+        flex-direction: row;
+      }
+      
+      .login-button,
+      .register-button {
+        margin: 0 15px 0 15px;
+        text-transform: lowercase;
+        background-color: #ffffffb2;
+        color: rgb(0, 0, 0);
+        cursor: pointer;
+        border: none;
+      }
+
       .hamburger {
         display: none;
       }
-
+      
       p,
-      a {
+      a,
+      button {
         font-family: Glacial;
         font-size: 18px;
         color: black;
         text-decoration: none;
       }
 
-      /*layouts*/
       .container {
         padding: 3% 10% 3% 10%;
+      }
+      @media screen and (max-width: 600px) {
+        main {
+          margin-top: 0px;
+        }
+        .row {
+          flex-direction: column;
+        }
+        .main-menu {
+          display: none;
+        }
+        .hamburger {
+          display: inline;
+        }
+        .main-header {
+          position: relative;
+          top: 0px;
+        }
+
+        .main-menu {
+          display: none;
+        }
+        .hamburger {
+          display: inline;
+        }
+        .main-header {
+          position: relative;
+          top: 0px;
+        }
+        .main-menu.responsive {
+          display: block;
+          position: absolute;
+          background-color: #f7f7f7;
+          width: 100%;
+          top: 60px;
+          left: 0px;
+          padding-top: 20px;
+          padding-bottom: 20px;
+        }
+        .main-menu.responsive li {
+          display: block;
+          margin-left: 0px;
+        }
       }
     </style>
   </head>
@@ -96,6 +151,13 @@
           alt="Visual Art Gallery logo"
         />
       </div>
+      <div class="navbar-buttons">
+        <div>
+          <a href="registration.php" class="register-button">register</a>
+        </div>
+        <div>
+          <a href="login.php" class="login-button">login</a>
+        </div>
     </header>
   </body>
 </html>

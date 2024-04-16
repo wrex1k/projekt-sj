@@ -7,6 +7,7 @@
   <style>
     .banner-container {
         position: relative;
+        margin-top: 40px;
     }
 
     .banner-container::before {
@@ -26,7 +27,7 @@
 
 <main>
   <div class="banner-container">
-    <img class="banner" src="img/sak9.jpg" alt="gallery">
+    <img class="banner" src="img/main8.jpg" alt="gallery">
   </div>
 </main>
 

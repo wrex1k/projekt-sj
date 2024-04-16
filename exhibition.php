@@ -6,6 +6,7 @@
     <title>Exhibition</title>
   </head>
   <body>
+    
     <?php
   $file_path = "parts/navbar.php";
   if(file_exists($file_path)) {
@@ -14,7 +15,6 @@
       echo "Failed to include $file_path. File does not exist.";
   }
   ?>
-
 <?php
   $file_path = "parts/slider.php";
   if(file_exists($file_path)) {

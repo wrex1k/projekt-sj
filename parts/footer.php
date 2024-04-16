@@ -15,12 +15,10 @@
         box-sizing: border-box;
       }
 
-      /*overall*/
       html {
         margin-bottom: 15px;
       }
 
-      /*layout*/
       .footer-container {
         display: flex;
         flex-direction: row;
@@ -43,11 +41,12 @@
       }
 
       .project-wrapper input[type="email"] {
-        width: 100%;
-        padding: 10px 85px;
+        width: 65%;
+        padding: 10px;
         border: none;
         border: black solid 1px;
         box-sizing: border-box;
+        font-family: Glacial;
       }
 
       .send-button {
@@ -85,7 +84,7 @@
       <div class="footer-container">
         <div class="project-wrapper">
           <p>Got a Project in Mind?</p>
-            <form class="input-wrapper" method="POST" action="assets/project_form.php" onsubmit="alert('Your email was send on!')">
+            <form class="input-wrapper" method="POST" action="assets/project.php" onsubmit="alert('Your email was send on!')">
               <input
                 type="email"
                 id="email"
