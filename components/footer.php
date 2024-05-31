@@ -4,6 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>footer</title>
+    <?php
+    require_once 'includes/database.php';
+  ?>
     <style>
       @font-face {
         font-family: Glacial;
@@ -30,7 +33,7 @@
         display: flex;
         flex-direction: column;
         justify-content: space-around;
-        gap: 20px;        
+        gap: 20px;
       }
 
       .input-wrapper {
@@ -76,25 +79,30 @@
         text-decoration: none;
         color: white;
       }
-
     </style>
   </head>
+
   <body>
     <footer>
       <div class="footer-container">
         <div class="project-wrapper">
           <p>Got a Project in Mind?</p>
-            <form class="input-wrapper" method="POST" action="assets/project.php" onsubmit="alert('Your email was send on!')">
-              <input
-                type="email"
-                id="email"
-                name="p_email"
-                placeholder="enter your email"
-                pattern="[a-z0-9._%+-]+@[a-z0-9.-]"
-                required
-              />
-              <input class="send-button" type="submit" value=""/>
-            </form>
+          <form
+            class="input-wrapper"
+            method="POST"
+            action="includes\projectHandler.php"
+            onsubmit="alert('Your email was sent!')"
+          >
+            <input
+              type="email"
+              id="project-email"
+              name="email"
+              placeholder="enter your email"
+              pattern="[a-z0-9._%+-]+@[a-z0-9.-]"
+              required
+            />
+            <input class="send-button" type="submit" value="" />
+          </form>
         </div>
 
         <div class="adress-wrapper">
