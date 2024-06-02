@@ -3,33 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/banner.css">
     <title>banner</title>
-    <style>
-      .banner-container {
-        position: relative;
-        margin-top: 40px;
-      }
-
-      .banner-container::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.05);
-      }
-
-      .banner {
-        width: 100%;
-      }
-    </style>
   </head>
-
   <body>
     <main>
       <div class="banner-container">
-        <img class="banner" src="img/banner.jpg" alt="gallery" />
+        <img class="banner" src="img/banner.png" alt="gallery" />
       </div>
     </main>
   </body>

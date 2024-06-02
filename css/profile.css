@@ -1,0 +1,38 @@
+@font-face {
+  font-family: Glacial;
+  src: url(fonts/GlacialIndifference-Regular.otf);
+}
+
+* {
+  font-family: Glacial;
+  margin: 0px;
+  padding: 0px;
+}
+
+.container {
+  flex-direction: row;
+  background-color: white;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+  margin-top: 100px;
+}
+
+.left-half {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  background-color: rgb(220, 220, 220);
+  padding: 30px;
+  width: 400px;
+}
+
+.gallery {
+  padding: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(125px, 1fr));
+  box-shadow: none;
+  grid-gap: 10px;
+}
+
+.object img {
+  height: 150px;
+  width: 125px;
+}

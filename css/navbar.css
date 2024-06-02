@@ -1,0 +1,43 @@
+@font-face {
+  font-family: "Glacial";
+  src: url("../fonts/GlacialIndifference-Regular.otf");
+}
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  display: flex;
+  justify-content: space-evenly;
+  background-color: #ffffff;
+  z-index: 1000;
+}
+
+.main-menu {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  list-style: none;
+}
+
+a,
+p {
+  color: #191919;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.name a {
+  margin: 0px 30px 0px 0px;
+}
+
+.item {
+  margin: 0px 30px;
+}
+
+.item:hover a,
+.name:hover a {
+  color: #11caae;
+  transition: color 0.5s ease;
+}

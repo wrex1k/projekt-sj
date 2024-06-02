@@ -4,6 +4,6 @@ session_start();
 session_unset();
 session_destroy();
 // Presmerovanie
-header("Location: ../index.php");
+header("Location: ../arts.php");
 exit();
 ?>

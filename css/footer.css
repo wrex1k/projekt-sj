@@ -1,0 +1,57 @@
+@font-face {
+  font-family: "Glacial";
+  src: url(fonts/GlacialIndifference-Regular.otf);
+}
+
+* {
+  margin: 0px;
+  box-sizing: border-box;
+  font-family: "Glacial";
+}
+
+h3 {
+  font-family: "Arial";
+}
+
+.footer-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 3% 15%;
+  background-color: white;
+}
+
+.project-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.input-wrapper #project-email {
+  width: 250px;
+  padding: 10px;
+  border: none;
+  border: black solid 1px;
+  box-sizing: border-box;
+}
+
+.send-button {
+  padding: 15px 35px;
+  background-image: url("../img/whale.png");
+  background-repeat: no-repeat;
+  background-position: 0%;
+  background-size: cover;
+  cursor: pointer;
+  border: none;
+}
+
+.copyright {
+  display: flex;
+  justify-content: center;
+  background-color: white;
+}
+
+.copyright p {
+  font-size: 14px;
+  margin-bottom: 10px;
+}

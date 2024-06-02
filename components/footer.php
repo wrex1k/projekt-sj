@@ -3,83 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/footer.css">
     <title>footer</title>
-    <?php
-    require_once 'includes/database.php';
-  ?>
-    <style>
-      @font-face {
-        font-family: Glacial;
-        src: url(fonts/GlacialIndifference-Regular.otf);
-      }
-
-      * {
-        margin: 0px;
-        box-sizing: border-box;
-      }
-
-      html {
-        margin-bottom: 15px;
-      }
-
-      .footer-container {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        padding: 2% 15% 2% 10%;
-      }
-
-      .project-wrapper {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        gap: 20px;
-      }
-
-      .input-wrapper {
-        display: flex;
-        flex-direction: row;
-        width: 350px;
-        gap: 5px;
-      }
-
-      .project-wrapper input[type="email"] {
-        width: 65%;
-        padding: 10px;
-        border: none;
-        border: black solid 1px;
-        box-sizing: border-box;
-        font-family: Glacial;
-      }
-
-      .send-button {
-        padding: 15px 35px;
-        background-image: url("img/whale.png");
-        background-repeat: no-repeat;
-        background-position: 0%;
-        background-size: cover;
-        cursor: pointer;
-        border: none;
-      }
-
-      .adress-wrapper h3 {
-        margin-bottom: 15px;
-      }
-
-      .copyright {
-        display: flex;
-        justify-content: center;
-      }
-
-      .copyright p {
-        font-size: 14px;
-      }
-
-      footer p a {
-        text-decoration: none;
-        color: white;
-      }
-    </style>
   </head>
 
   <body>

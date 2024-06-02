@@ -1,0 +1,144 @@
+@font-face {
+  font-family: Glacial;
+  src: url(fonts/GlacialIndifference-Regular.otf);
+}
+
+body {
+  margin: 0;
+  margin-top: 60px;
+  padding: 0;
+  background-color: #efefef;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+a,
+p {
+  font-family: Glacial;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+.white {
+  color: white;
+}
+
+.click {
+  width: 20vw;
+  padding: 10px 20px;
+  color: white;
+  background-color: #191919;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.6s;
+  text-align: center;
+  font-size: 15px;
+  font-family: Glacial;
+}
+
+.click:hover {
+  background-color: rgb(27, 189, 181);
+}
+
+#delete:hover {
+  background-color: rgb(255, 0, 0);
+}
+
+a:hover {
+  color: rgb(27, 189, 181);
+  transition: color 0.6;
+}
+
+.upload-form {
+  margin: 0px 150px;
+  padding: 40px 200px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: white;
+}
+
+.line {
+  display: flex;
+  justify-content: space-between;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+.insert {
+  width: 20vw;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin: 0px 0px 10px 0px;
+}
+
+.insert,
+.click {
+  max-width: 330px;
+}
+
+#image {
+  display: none;
+}
+
+input,
+label {
+  border: none;
+  font-family: Glacial;
+}
+
+.terms {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin: 20px 0px 20px 0px;
+}
+
+.checkbox {
+  content: "";
+  display: inline-block;
+  border: 2px solid #000;
+  margin: 0px;
+  width: 30px;
+  height: 30px;
+}
+
+#terms {
+  height: 30px;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 5vw 20vw;
+  width: 900px;
+  height: 500px;
+  background-color: rgba(14, 12, 12, 0.874);
+  border-radius: 10px;
+}
+
+.left-half img {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  height: 500px;
+  width: 400px;
+}
+
+.right-half {
+  height: 500px;
+  width: 500px;
+}
+
+.reglog-wrapper {
+  position: relative;
+  flex-direction: column;
+  margin: 60px;
+}
