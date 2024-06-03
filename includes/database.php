@@ -12,9 +12,9 @@ class Database {
     private $pdo;
 
     public function __construct() {
-        $this->connect(); // Connect first to initialize $pdo
-        $this->checkDatabase(); // Check database after connection is established
-        $this->createTables(); // Create tables after ensuring database existence
+        $this->connect(); 
+        $this->checkDatabase(); 
+        $this->createTables();
     }
 
     private function connect() {
@@ -25,7 +25,7 @@ class Database {
         ];
 
         $dsn = "mysql:host={$this->host};charset={$this->charset}";
-        $this->pdo = new PDO($dsn, $this->user, $this->pass, $options); // Initialize $pdo
+        $this->pdo = new PDO($dsn, $this->user, $this->pass, $options); 
     }
 
     private function checkDatabase() {
@@ -38,10 +38,6 @@ class Database {
 
     private function createTables() {
         $tables = [
-            "CREATE TABLE IF NOT EXISTS projectinmind (
-                email VARCHAR(30) NOT NULL,
-                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-            )",
             "CREATE TABLE IF NOT EXISTS users (
                 user_id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
                 firstname VARCHAR(50) NOT NULL,
@@ -80,7 +76,6 @@ class Database {
     }
 }
 
-// Usage
 $database = new Database();
 $database->addAdmin();
 $pdo = $database->getPdo();

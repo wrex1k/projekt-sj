@@ -10,9 +10,9 @@
 
 .object {
   transition: transform 0.6s;
-  display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
+  /* display: flex; */
   justify-content: flex-start;
 }
 
@@ -23,7 +23,7 @@
 .object img {
   height: 350px;
   width: 270px;
-  object-fit: cover; /* Prispôsobiť veľkosť obrázkov tak, aby sa zmestili do kontajnera */
+  object-fit: cover;
   border: none;
 }
 
@@ -31,5 +31,5 @@
   margin: 5px 0;
   color: #000000;
   font-size: 15px;
-  text-align: center; /* Vycentrovanie textu */
+  text-align: center;
 }

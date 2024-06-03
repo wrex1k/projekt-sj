@@ -9,14 +9,15 @@
 </head>
 
 <body>
-<?php 
+    <?php 
     if (session_status() == PHP_SESSION_NONE) {
         session_start();
     }
 
     if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true): 
     ?>
-    <form class="upload-form" action="includes/artHandler.php" method="post" autocomplete="off" enctype="multipart/form-data">
+    <form class="upload-form" action="includes/artHandler.php" method="post" autocomplete="off"
+        enctype="multipart/form-data">
         <div class="line">
             <div class="column">
                 <label for="name">Art Name</label>

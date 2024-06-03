@@ -11,9 +11,8 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 }
 
 function deleteArtHandler($id) {
-    global $pdo; // Assumes $pdo is the global variable for database connection
+    global $pdo; 
 
-    // Get the image name by ID
     $query = "SELECT image FROM arts WHERE id = :id";
     $stmt = $pdo->prepare($query);
     $stmt->bindParam(':id', $id, PDO::PARAM_INT);
@@ -21,13 +20,11 @@ function deleteArtHandler($id) {
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
     $imageToDelete = $row['image'];
 
-    // Delete record from database
     $query = "DELETE FROM arts WHERE id = :id";
     $stmt = $pdo->prepare($query);
     $stmt->bindParam(':id', $id, PDO::PARAM_INT);
     $stmt->execute();
 
-    // Delete image from server
     if (file_exists('../img/arts/' . $imageToDelete)) {
         unlink('../img/arts/' . $imageToDelete);
     }
@@ -47,12 +44,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $uploadOk = 1;
         $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
 
-        // Check if the target directory exists, if not, create it
         if (!is_dir($targetDir)) {
             mkdir($targetDir, 0777, true);
         }
 
-        // Check if image file is a actual image or fake image
         $check = getimagesize($_FILES['image']['tmp_name']);
         if ($check !== false) {
             $uploadOk = 1;
@@ -61,28 +56,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $uploadOk = 0;
         }
 
-        // Check if file already exists
         if (file_exists($targetFile)) {
             echo "Sorry, file already exists.";
             $uploadOk = 0;
         }
 
-        // Check file size
         if ($_FILES['image']['size'] > 500000) {
             echo "Sorry, your file is too large.";
             $uploadOk = 0;
         }
 
-        // Allow certain file formats
         if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
             echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
             $uploadOk = 0;
         }
 
-        // Check if $uploadOk is set to 0 by an error
         if ($uploadOk == 0) {
             echo "Sorry, your file was not uploaded.";
-        // if everything is ok, try to upload file
         } else {
             if (move_uploaded_file($_FILES['image']['tmp_name'], $targetFile)) {
                 try {
@@ -104,7 +94,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 } else {
-    // Redirect back to profile if action or ID is not set
     header('Location: ../profile.php');
     exit;
 }

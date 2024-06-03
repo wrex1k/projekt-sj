@@ -6,31 +6,12 @@
     <title>home</title>
     
   </head>
-  <?php
-  require 'includes/database.php';
-  ?>
-  <body>
-    <?php
-    $file_path = "components/navbar.php";
-    if(file_exists($file_path)) {
-        include_once($file_path);
-    } else {
-        echo "Failed to include $file_path. File does not exist.";
-    }
-
-    $file_path = "components/banner.php";
-    if(file_exists($file_path)) {
-        include_once($file_path);
-    } else {
-        echo "Failed to include $file_path. File does not exist.";
-    }
-
-    $file_path = "components/footer.php";
-    if(file_exists($file_path)) {
-        include_once($file_path);
-    } else {
-        echo "Failed to include $file_path. File does not exist.";
-    }
-    ?>
+    <body>
+      <?php
+      require 'includes/database.php';
+      require 'components/navbar.php';
+      require 'components/banner.php';
+      require 'components/footer.php';
+      ?>
   </body>
 </html>

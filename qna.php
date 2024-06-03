@@ -17,12 +17,7 @@
   </style>
   <body>
     <?php
-    $file_path = "components/navbar.php";
-    if(file_exists($file_path)) {
-        include_once($file_path);
-    } else {
-        echo "Failed to include $file_path. File does not exist.";
-    }
+        require "components/navbar.php";
     ?>
 
     <main>
@@ -65,12 +60,7 @@
   </main>
 
     <?php
-    $file_path = "components/footer.php";
-    if(file_exists($file_path)) {
-        include_once($file_path);
-    } else {
-        echo "Failed to include $file_path. File does not exist.";
-    }
+        require 'components/footer.php';
     ?>
     <script src="js/accordion.js"></script>
   </body>

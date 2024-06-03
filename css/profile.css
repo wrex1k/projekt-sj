@@ -28,6 +28,7 @@
 .gallery {
   padding: 10px;
   grid-template-columns: repeat(auto-fill, minmax(125px, 1fr));
+  margin: 0px;
   box-shadow: none;
   grid-gap: 10px;
 }

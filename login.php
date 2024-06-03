@@ -26,15 +26,6 @@
             </div>
         </div>
     </div>
-    <script>
-        function togglePasswordVisibility() {
-            var passwordInput = document.getElementById("password");
-            if (passwordInput.type === "password") {
-                passwordInput.type = "text";
-            } else {
-                passwordInput.type = "password";
-            }
-        }
-    </script>
+    <script src="js/passwordVisibility.js"></script>
 </body>
 </html>

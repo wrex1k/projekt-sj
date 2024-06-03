@@ -27,28 +27,25 @@ class UserManager {
             $_SESSION['user_id'] = $user['user_id'];
             $_SESSION['registered_at'] = $user['registered_at'];
 
-            header('Location: ../index.php');
-            exit();
+            $this->redirectWithMessage('../index.php', null);
         } else {
-            echo "<script>alert('Invalid email or password.'); window.location.href = '../login.php';</script>";
+            $this->redirectWithMessage('../login.php', 'Invalid email or password.');
         }
     }
 
     public function logout() {
         session_unset();
         session_destroy();
-        header("Location: ../arts.php");
-        exit();
+        $this->redirectWithMessage('../arts.php', null);
     }
 
     public function register($formData) {
         $errorMessage = $this->validate($formData);
         if ($errorMessage === true) {
             $this->insertUser($formData);
-            header("Location: ../login.php");
-            exit();
+            $this->redirectWithMessage('../login.php', null);
         } else {
-            $this->displayError($errorMessage);
+            $this->redirectWithMessage('../register.php', $errorMessage);
         }
     }
 
@@ -58,11 +55,11 @@ class UserManager {
         $lastname = isset($formData['lastname']) ? $formData['lastname'] : null;
 
         if (!$userId) {
-            echo "User ID is not set in the session.";
+            $this->redirectWithMessage(null, 'User ID is not set in the session.');
         } elseif (!$firstname) {
-            echo "First name is not provided.";
+            $this->redirectWithMessage(null, 'First name is not provided.');
         } elseif (!$lastname) {
-            echo "Last name is not provided.";
+            $this->redirectWithMessage(null, 'Last name is not provided.');
         } else {
             try {
                 $stmt = $this->pdo->prepare("UPDATE users SET firstname = ?, lastname = ? WHERE user_id = ?");
@@ -73,14 +70,14 @@ class UserManager {
                 if ($stmt->execute()) {
                     $_SESSION['firstname'] = $firstname;
                     $_SESSION['lastname'] = $lastname;
-                    header('Location: ../profile.php');
+                    $this->redirectWithMessage('../profile.php', null);
                 } else {
-                    echo "Error updating profile: " . $stmt->errorInfo()[2];
+                    $this->redirectWithMessage(null, 'Error updating profile: ' . $stmt->errorInfo()[2]);
                 }
 
                 $stmt->closeCursor();
             } catch (Exception $e) {
-                echo "An error occurred: " . $e->getMessage();
+                $this->redirectWithMessage(null, 'An error occurred: ' . $e->getMessage());
             }
         }
     }
@@ -88,11 +85,10 @@ class UserManager {
     public function deleteAccount($userId) {
         $stmt = $this->pdo->prepare("DELETE FROM users WHERE user_id = ?");
         if ($stmt->execute([$userId])) {
-            session_destroy(); // Destroy session after account deletion
-            header("Location: ../index.php"); // Redirect to a goodbye or home page
-            exit();
+            session_destroy(); 
+            $this->redirectWithMessage('../index.php', null);
         } else {
-            echo "<script>alert('Error deleting profile: " . $stmt->errorInfo()[2] . "');</script>";
+            $this->redirectWithMessage(null, 'Error deleting profile: ' . $stmt->errorInfo()[2]);
         }
     }
 
@@ -134,14 +130,19 @@ class UserManager {
         ]);
     }
 
-    private function displayError($errorMessage) {
-        echo "<script>alert('$errorMessage'); window.location.href = '../register.php';</script>";
+    private function redirectWithMessage($location, $message) {
+        if ($message) {
+            echo "<script>alert('$message');</script>";
+        }
+        if ($location) {
+            echo "<script>window.location.href = '$location';</script>";
+        }
+        exit();
     }
 }
 
 $database = new Database();
-$pdo = $database->getPdo(); // Updated to use getPdo method
-
+$pdo = $database->getPdo();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $userManager = new UserManager($pdo);
 

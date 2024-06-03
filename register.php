@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="css/forms.css">
-  <title>register</title>
+  <title>Register</title>
 </head>
 <body>
   <div class="container">
@@ -24,7 +24,7 @@
             </div>
             <input class="insert" id="re-password" type="password" name="re-password" placeholder="Confirm Password" required />
             <div class="terms">
-              <input class="checkbox" type="checkbox" name="agree-terms" id="terms" class="terms" required />
+              <input class="" type="checkbox" name="agree-terms" id="agree-terms" class="terms" required />
               <a href="terms.php" class="white"><p>I agree to the terms and conditions</p></a>
             </div>
             <input type="hidden" name="action" value="register">
@@ -33,18 +33,6 @@
       </div>
     </div>
   </div>
-  <script>
-    function togglePasswordVisibility() {
-      var passwordInput = document.getElementById("password");
-      var rePasswordInput = document.getElementById("re-password");
-      if (passwordInput.type === "password") {
-        passwordInput.type = "text";
-        rePasswordInput.type = "text";
-      } else {
-        passwordInput.type = "password";
-        rePasswordInput.type = "password";
-      }
-    }
-  </script>
+  <script src="js/passwordVisibility.js"></script>
 </body>
 </html>

@@ -1,6 +1,6 @@
 @font-face {
   font-family: Glacial;
-  src: url(fonts/GlacialIndifference-Regular.otf);
+  src: url(../fonts/GlacialIndifference-Regular.otf);
 }
 
 body {
@@ -8,6 +8,7 @@ body {
   margin-top: 60px;
   padding: 0;
   background-color: #efefef;
+  font-family: Glacial;
 }
 
 h1,
@@ -17,7 +18,6 @@ h4,
 h5,
 a,
 p {
-  font-family: Glacial;
   text-decoration: none;
   display: flex;
   align-items: center;
@@ -96,9 +96,7 @@ label {
 
 .terms {
   display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  margin: 20px 0px 20px 0px;
+  align-items: center;
 }
 
 .checkbox {
@@ -107,10 +105,6 @@ label {
   border: 2px solid #000;
   margin: 0px;
   width: 30px;
-  height: 30px;
-}
-
-#terms {
   height: 30px;
 }
 
