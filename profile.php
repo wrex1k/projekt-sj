@@ -9,11 +9,18 @@ include 'includes/database.php';
     <link rel="stylesheet" href="css/forms.css">
     <link rel="stylesheet" href="css/gallery.css">
     <link rel="stylesheet" href="css/profile.css">
-    <title>profile</title>
+    <title>Profile</title>
 </head>
 <body>
     <?php
-        require 'components/navbar.php';
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+    if (isset($_SESSION['message'])) {
+        echo "<p>{$_SESSION['message']}</p>";
+        unset($_SESSION['message']);
+    }
+    require 'components/navbar.php';
     ?>
 
     <div class="container">
@@ -42,9 +49,9 @@ include 'includes/database.php';
             </div>
 
             <div class="delete-buttons">
-                <form method="POST" action="includes/userManager.php">
+                <form method="POST" action="includes/userManager.php" onsubmit="return confirmDelete()">
                     <input type="hidden" name="action" value="deleteAccount">
-                    <button class="click" id="delete" type="submit" value="Delete Account">Delete Account</Button>
+                    <button class="click" id="delete" type="submit" value="Delete Account">Delete Account</button>
                 </form>
             </div>
         </div>
@@ -78,5 +85,11 @@ include 'includes/database.php';
                 ?>
             </div>
         </div>
-    </body>
+    </div>
+    <script>
+    function confirmDelete() {
+        return confirm("Are you sure you want to delete your account?");
+    }
+    </script>
+</body>
 </html>

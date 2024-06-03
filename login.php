@@ -4,9 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/forms.css">
-    <title>login</title>
+    <title>Login</title>
 </head>
 <body>
+    <?php
+    session_start();
+    if (isset($_SESSION['message'])) {
+        echo "<p>{$_SESSION['message']}</p>";
+        unset($_SESSION['message']);
+    }
+    ?>
     <div class="container">
         <div class="left-half">
             <img src="img/login.jpg" alt="art" />

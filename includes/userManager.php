@@ -1,24 +1,29 @@
 <?php
+// vytvorenie session ak session_status je NONE
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
 require 'database.php';
 
+// definícia triedy UserManager
 class UserManager {
     private $pdo;
 
+    // konštruktor, ktorý prijíma PDO objekt
     public function __construct($pdo) {
         $this->pdo = $pdo;
     }
 
+    // funkcia pre prihlásenie používateľa
     public function login($formData) {
-        $email = filter_var($formData['email'], FILTER_SANITIZE_EMAIL);
+        $email = filter_var($formData['email'], FILTER_SANITIZE_EMAIL); // Sanitizuje email
         $stmt = $this->pdo->prepare("SELECT * FROM users WHERE email = ?");
         $stmt->execute([$email]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($user && password_verify($formData['password'], $user['password'])) {
+            // nastaví relácie pre prihláseného používateľa
             $_SESSION['loggedin'] = true;
             $_SESSION['firstname'] = $user['firstname'];
             $_SESSION['lastname'] = $user['lastname'];
@@ -27,28 +32,34 @@ class UserManager {
             $_SESSION['user_id'] = $user['user_id'];
             $_SESSION['registered_at'] = $user['registered_at'];
 
-            $this->redirectWithMessage('../index.php', null);
+            // presmeruje používateľa na hlavnú stránku
+            header("Location: ../index.php");
+            exit();
         } else {
+            // v prípade nesprávneho emailu alebo hesla presmeruje späť na prihlasovaciu stránku
             $this->redirectWithMessage('../login.php', 'Invalid email or password.');
         }
     }
 
+    // funkcia pre odhlásenie používateľa
     public function logout() {
         session_unset();
         session_destroy();
         $this->redirectWithMessage('../arts.php', null);
     }
 
+    // funkcia pre registráciu nového používateľa
     public function register($formData) {
-        $errorMessage = $this->validate($formData);
+        $errorMessage = $this->validate($formData); 
         if ($errorMessage === true) {
-            $this->insertUser($formData);
-            $this->redirectWithMessage('../login.php', null);
+            $this->insertUser($formData); 
+            $this->redirectWithMessage('../login.php', 'Registration successful. Please log in.');
         } else {
             $this->redirectWithMessage('../register.php', $errorMessage);
         }
     }
 
+    // Funkcia pre aktualizáciu údajov používateľa
     public function updateAccount($formData) {
         $userId = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
         $firstname = isset($formData['firstname']) ? $formData['firstname'] : null;
@@ -70,7 +81,7 @@ class UserManager {
                 if ($stmt->execute()) {
                     $_SESSION['firstname'] = $firstname;
                     $_SESSION['lastname'] = $lastname;
-                    $this->redirectWithMessage('../profile.php', null);
+                    $this->redirectWithMessage('../profile.php', '');
                 } else {
                     $this->redirectWithMessage(null, 'Error updating profile: ' . $stmt->errorInfo()[2]);
                 }
@@ -82,16 +93,18 @@ class UserManager {
         }
     }
 
+    // Funkcia pre vymazanie účtu používateľa
     public function deleteAccount($userId) {
         $stmt = $this->pdo->prepare("DELETE FROM users WHERE user_id = ?");
         if ($stmt->execute([$userId])) {
             session_destroy(); 
-            $this->redirectWithMessage('../index.php', null);
+            $this->redirectWithMessage('../index.php', 'Account deleted successfully.');
         } else {
             $this->redirectWithMessage(null, 'Error deleting profile: ' . $stmt->errorInfo()[2]);
         }
     }
 
+    // Funkcia na validáciu registračných údajov
     private function validate($formData) {
         if (strlen($formData["firstname"]) < 2 || strlen($formData["firstname"]) > 50 || strlen($formData["lastname"]) < 2 || strlen($formData["lastname"]) > 50) {
             return "First name and last name must be between 2 and 50 characters long.";
@@ -120,6 +133,7 @@ class UserManager {
         return true;
     }
 
+    // Funkcia na vloženie nového používateľa do databázy
     private function insertUser($formData) {
         $stmt = $this->pdo->prepare("INSERT INTO users (firstname, lastname, email, password, role) VALUES (?, ?, ?, ?, 'user')");
         $stmt->execute([
@@ -130,19 +144,22 @@ class UserManager {
         ]);
     }
 
+    // Funkcia na presmerovanie s oznamom
     private function redirectWithMessage($location, $message) {
         if ($message) {
-            echo "<script>alert('$message');</script>";
+            $_SESSION['message'] = $message;
         }
         if ($location) {
-            echo "<script>window.location.href = '$location';</script>";
+            header("Location: $location");
         }
         exit();
     }
 }
 
+// Vytvorí inštanciu triedy Database a získa PDO objekt
 $database = new Database();
 $pdo = $database->getPdo();
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $userManager = new UserManager($pdo);
 
@@ -158,22 +175,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if (isset($_SESSION['user_id'])) {
                     $userManager->deleteAccount($_SESSION['user_id']);
                 } else {
-                    echo "<script>alert('No user is logged in.'); window.location.href = '../login.php';</script>";
+                    $_SESSION['message'] = 'No user is logged in.';
+                    header("Location: ../login.php");
                 }
                 break;
             case 'updateAccount':
                 $userManager->updateAccount($_POST);
                 break;
             default:
-                echo "<script>alert('Invalid action.'); window.location.href = '../login.php';</script>";
+                $_SESSION['message'] = 'Invalid action.';
+                header("Location: ../login.php");
         }
     } else {
-        echo "<script>alert('No action specified.'); window.location.href = '../login.php';</script>";
+        $_SESSION['message'] = 'No action specified.';
+        header("Location: ../login.php");
     }
 } elseif ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['action']) && $_GET['action'] == 'logout') {
     $userManager = new UserManager($pdo);
     $userManager->logout();
 } else {
-    echo "<script>alert('Invalid request method.'); window.location.href = '../login.php';</script>";
+    $_SESSION['message'] = 'Invalid request method.';
+    header("Location: ../login.php");
 }
 ?>
